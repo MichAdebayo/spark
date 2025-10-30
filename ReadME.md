@@ -19,7 +19,7 @@ The attached solution notebook demonstrates reading Parquet files, extracting me
 
 ## File included
 
-- `notebook/databricks.ipynb` — the Databricks-focused notebook that contains the production logic for reading parquet files, extracting year/month from file names, computing metrics and writing outputs (see `notebook/databricks.ipynb`).
+- `notebook/yellow_taxi_analysis_databricks.ipynb` — the Databricks-focused notebook that contains the production logic for reading parquet files, extracting year/month from file names, computing metrics and writing outputs (see `notebook/yellow_taxi_analysis_databricks.ipynb`).
 
 ## Data
 
@@ -30,12 +30,11 @@ The attached solution notebook demonstrates reading Parquet files, extracting me
 Typical columns used in the analysis :
 - `PULocationID` — pickup location (used to identify departure zones)
 - `trip_distance` — distance of the trip
-- `trip_time` or `tpep_pickup_datetime` / `tpep_dropoff_datetime` — used to compute trip duration
+- `tpep_pickup_datetime` / `tpep_dropoff_datetime` — used to compute trip duration
 - `payment_type` — payment method (card, cash, etc.)
 - `passenger_count` — number of passengers
 - `total_amount` — total fare
 - `tip_amount` — tip value
-
 
 
 ## High-level architecture
@@ -57,7 +56,7 @@ Typical columns used in the analysis :
 ## How to run (Databricks)
 
 1. Upload the Parquet files into DBFS or mount your storage account to Databricks. Place files under a folder such as `/Volumes/workspace/default/yellow_tripdata/`.
-2. Import the notebook (`notebook/databricks.ipynb`) into your Databricks workspace.
+2. Import the notebook (`notebook/yellow_taxi_analysis_databricks.ipynb`) into your Databricks workspace.
 3. Create or start an interactive cluster. Attach the notebook to that cluster.
 4. Set up secrets (Databricks CLI or UI) if you want to write to Azure SQL. Example:
 
@@ -81,23 +80,6 @@ Typical columns used in the analysis :
 - `total_tip_paid` — total tips summed per month
 
 Each result is displayed in the notebook (for exploration) and stored as a named DataFrame variable that can then be written to Delta / Parquet / Azure SQL.
-
-## Example output paths (as used in the notebook)
-
-- Delta / Parquet outputs: `/Volumes/workspace/default/yellow_tripdata/<table_name>` or `./outputs/dept_stats_parquet` (the notebook shows writing to an outputs path as an example). Adjust to your Databricks volume or mount.
-- JDBC target: Azure SQL database (configured via secrets). The notebook demonstrates writing each aggregated DataFrame to JDBC with the `com.microsoft.sqlserver.jdbc.SQLServerDriver`.
-
-## Example SQL to query results in Databricks
-
-After writing aggregated results to Delta/Parquet/SQL you can run queries like:
-
-```sql
--- Top 10 departure zones for January 2024
-SELECT * FROM most_frequent_departure WHERE year = '2024' AND month = '01' ORDER BY trip_count DESC LIMIT 10;
-
--- Average trip distance by payment type for 2025-03
-SELECT * FROM avg_trip_distance_by_payment WHERE year = '2025' AND month = '03';
-```
 
 ## Troubleshooting
 
