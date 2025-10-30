@@ -7,4 +7,6 @@ intro_pyspark.ipynb
 outputs/
 img/spark_pyspark.jpeg
 data/
+notebook/databricks_stateless.ipynb
+notebook/yellow_taxi_analysis_databricks.zip
 requirements.txt
