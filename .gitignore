@@ -5,7 +5,6 @@ spark-warehouse/
 intro_pyspark.ipynb
 .DS_Store
 outputs/
-img/
+img/spark_pyspark.jpeg
 data/
-notebook/
 requirements.txt

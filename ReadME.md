@@ -1,5 +1,9 @@
 # Urban Mobility — Yellow Taxi Analysis (Databricks)
 
+<p align="center">
+   <img src="img/yellow_taxi.png" alt="Yellow Taxi" width="1000" height="700" />
+</p>
+
 ## Project overview
 
 This project implements a data processing pipeline in Azure Databricks to analyze large public Yellow Taxi trip datasets (Parquet files) for the years 2024 and 2025. The goal is to produce a set of monthly indicators describing mobility patterns and service usage so they can be consumed by BI or downstream applications.
@@ -70,7 +74,7 @@ Typical columns used in the analysis :
 ## What the Databricks notebook computes (summary)
 
 - `most_frequent_departure` — top 10 pickup zones per year/month (row_number windowed by year/month ordered by trip_count)
-- `avg_trip_duration_per_month` — average trip duration per year/month
+- `avg_trip_duration` — average trip duration per year/month
 - `avg_trip_distance` — average trip distance per year/month
 - `avg_trip_distance_by_payment` — average trip distance grouped by payment type per month
 - `avg_fees_by_passenger_count` — average total_amount by passenger count per month
