@@ -1,0 +1,11 @@
+.venv/
+*.pyc
+__pycache__/
+spark-warehouse/
+intro_pyspark.ipynb
+.DS_Store
+outputs/
+img/
+data/
+notebook/
+requirements.txt
